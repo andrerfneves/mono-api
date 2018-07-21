@@ -1,17 +1,18 @@
-# mono-api
+# Mono API Server
+> https://monoapp.io
 
 ## Installation
 
-_Built with the BH Node Generator, with express, mongodb, and mongoose. Requires Node 8+_
+> Built with express, mongodb, and mongoose. Requires Node 8+_
 
-- Clone repo
-- Install dependencies (`npm install`)
-- Run mongodb (`mongod` or `brew services start mongo`)
-- Run the application (`npm start`)
+- Clone repository
+- Install dependencies (`yarn`)
+- Run MongoDB (`mongod` or `brew services start mongo`)
+- Run the application (`yarn start`)
 
 ## Documentation
 
-This API uses stateless JWT authentication. Once a user logs in, the successful response will contain the `token` in the body. That token will expire in 24 hours. Every request will generate a new token that will last 24 hours from the time of the request, so make sure to replace the token in local storage (or wherever) after every request. To logout, simply remove the token from local storage (or wherever).
+This API uses stateless JWT authentication. Once a user logs in, the successful response will contain the `token` in the body. That token will expire in 24 hours. Every request will generate a new token that will last 24 hours from the time of the request, so make sure to replace the token in local storage after every request. To logout, simply remove the token from local storage.
 
 Attach that token to any requests that require authentication by setting it as the value for the `x-access-token` header field.
 
@@ -22,16 +23,15 @@ Attach that token to any requests that require authentication by setting it as t
 
 #### [User](/api/models/user.js)
 
-##### attributes
+##### Attributes
 
-- `firstName`: String*
-- `lastName`: String*
+- `name`: String*
 - `email`: String*^
 - `password`: String* (hashed)
 
-##### virtuals
+##### Virtuals
 
-##### associations
+##### Associations
 
 ### Routes
 
@@ -42,27 +42,25 @@ Attach that token to any requests that require authentication by setting it as t
 
 Registration route. Returns the new user.
 
-##### sample body
+##### Sample Body
 
 ```
 {
-  firstName: "Nakey",
-  lastName: "Jakey",
-  email: "jakey@example.com",
+  name: "Andre Neves",
+  email: "andre@neves.com",
   password: "asdfasdf"
 }
 ```
 
-##### successful response
+##### Successful Response
 
 ```
 {
   "message": "Successfully created user",
   "data": {
     "id": 45114006-cde6-450d-a1ec-04765401bd75,
-    "firstName": "Nakey",
-    "lastName": "Jakey",
-    "email": "jakey@example.com",
+    "name": "Andre",
+    "email": "andre@neves.com",
     "updatedAt": "2018-04-17T20:42:14.054Z",
     "createdAt": "2018-04-17T20:42:14.054Z"
   },
@@ -74,25 +72,24 @@ Registration route. Returns the new user.
 
 Re-authentication route. Returns the logged in user.
 
-##### sample body
+##### Sample Body
 
 ```
 {
-  email: "jakey@example.com",
+  email: "andre@neves.com",
   password: "asdfasdf"
 }
 ```
 
-##### successful response
+##### Successful Response
 
 ```
 {
   "message": "Successfully logged in user",
   "data": {
     "id": 45114006-cde6-450d-a1ec-04765401bd75,
-    "firstName": "Nakey",
-    "lastName": "Jakey",
-    "email": "jakey@example.com",
+    "name": "Andre",
+    "email": "andre@neves.com",
     "updatedAt": "2018-04-17T20:42:14.054Z",
     "createdAt": "2018-04-17T20:42:14.054Z"
   },
@@ -104,16 +101,15 @@ Re-authentication route. Returns the logged in user.
 
 Return logged in user identified in token.
 
-##### successful response
+##### Successful Response
 
 ```
 {
   "message": "Successfully retrieved logged in user",
   "data": {
     "id": 45114006-cde6-450d-a1ec-04765401bd75,
-    "email": "jakey@example.com",
-    "firstName": "Nakey",
-    "lastName": "Jakey",
+    "email": "andre@neves.com",
+    "name": "Andre",
     "updatedAt": "2018-04-17T20:42:14.054Z",
     "createdAt": "2018-04-17T20:42:14.054Z"
   },
@@ -121,7 +117,7 @@ Return logged in user identified in token.
 }
 ```
 
-##### error response
+##### Error Response
 
 ```
 {
@@ -130,9 +126,9 @@ Return logged in user identified in token.
 }
 ```
 
-#### sample errors
+#### Sample Errors
 
-##### authentication errors
+##### Authentication Errors
 
 ```
 {
@@ -151,7 +147,7 @@ Return logged in user identified in token.
 }
 ```
 
-##### validation errors
+##### Validation Errors
 
 ```
 {
@@ -162,9 +158,8 @@ Return logged in user identified in token.
     "errmsg": "E11000 duplicate key error collection: admin.users index: email_1 dup key: { : \"jake3@bighuman.com\" }",
     "op": {
       "_id": "5ad79709f8caa627a4a0e1ca",
-      "firstName": "Jake",
-      "lastName": "Bent",
-      "email": "jake3@bighuman.com",
+      "name": "Andre",
+      "email": "andre@neves.com",
       "password": "$2a$10$2RZ4Nr8TQ5wl3E7ff1viPOxmd/ui1fZan0mEvNH9Duoy44/ZicteO",
       "__v": 0
     }

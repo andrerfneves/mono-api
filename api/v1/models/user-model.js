@@ -4,11 +4,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const userSchema = mongoose.Schema({
-  firstName: {
-    type: String,
-    trim: true,
-  },
-  lastName: {
+  name: {
     type: String,
     trim: true,
   },
@@ -31,9 +27,9 @@ const userSchema = mongoose.Schema({
   },
 });
 
-userSchema.virtual('fullName').get(function () {
-  return `${this.firstName} ${this.lastName}`;
-});
+// userSchema.virtual('fullName').get(function () {
+//   return `${this.firstName} ${this.lastName}`;
+// });
 
 userSchema.methods.checkPassword = function (password) {
   return bcrypt.compareSync(password, this.password);

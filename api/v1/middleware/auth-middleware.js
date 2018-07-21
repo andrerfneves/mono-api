@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
-const config = require('../../config');
+const config = require('../../../config');
 
 module.exports = async (req, res, next) => {
   const token = req.headers['x-access-token'];
