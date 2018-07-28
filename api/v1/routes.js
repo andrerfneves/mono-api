@@ -4,6 +4,7 @@ const {
   auth,
   error,
   format,
+  cors,
 } = require('./middleware');
 
 module.exports = () => {
@@ -11,6 +12,7 @@ module.exports = () => {
 
   router.use(error);
   router.use(format);
+  router.use(cors);
 
   router.get('/', controllers.home.index);
 
