@@ -8,7 +8,8 @@
     "start:nowatch": "node server.js",
     "lint": "eslint ./api/",
     "toc:update": "doctoc ./README.md",
-    "db:clean": "mongo mono_server --eval \"db.users.drop();\""
+    "db:clean": "mongo mono_server --eval \"db.users.drop();\"",
+    "deploy": "now && now alias"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
@@ -20,7 +21,6 @@
     "eslint-plugin-react": "^7.7.0",
     "nodemon": "^1.17.3"
   },
-  "keywords": [],
   "author": {
     "email": "andrerfneves@protonmail.com",
     "name": "André Neves",
