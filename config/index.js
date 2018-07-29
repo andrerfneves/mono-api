@@ -6,7 +6,7 @@ module.exports = {
     },
   },
   jwt: {
-    secret: process.env.JWT_SECRET || 'WhoKenYouBlame',
+    secret: process.env.JWT_SECRET || 'WhoWouldYouBlame',
     options: {
       expiresIn: process.env.JWT_EXPIRE_TIME || '24h',
     },
