@@ -1,4 +1,4 @@
 {
   "name": "mono-server",
-  "alias": ["mono-server.now.sh"]
+  "alias": ["mono-server.now.sh", "tray.monoapp.io"]
 }
