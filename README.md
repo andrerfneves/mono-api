@@ -10,6 +10,17 @@
 - To run MongoDB run `mongod` (or `brew services start mongo`)
 - To run the server run `yarn start` (or `npm run start`)
 
+## Environment Variables
+
+In order to run this locally you need a couple environment variables in an `.env` file at the root folder of the application. Check `config/index.js` and below for more info.
+
+```bash
+PORT=3000
+MONGODB_URL="mongodb://USERNAME:PASSWORD@SERVER/DATABASE"
+JWT_SECRET="ThisIsNotARealSecret"
+JWT_EXPIRE_TIME="24h"
+```
+
 ## Documentation
 
 This API uses stateless JWT authentication. Once a user logs in, the successful response will contain the `token` in the body. That token will expire in 24 hours. Every request will generate a new token that will last 24 hours from the time of the request, so make sure to replace the token in local storage after every request. To logout, simply remove the token from local storage.
