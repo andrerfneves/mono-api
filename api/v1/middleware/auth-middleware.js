@@ -3,7 +3,7 @@ const { User } = require('../models');
 const config = require('../../../config');
 
 module.exports = async (req, res, next) => {
-  const token = req.headers['x-access-token'];
+  const token = req.headers['x-mono-token'];
 
   if (!token) {
     return res.status(400).error(new Error('No token provided'), 'No token provided');

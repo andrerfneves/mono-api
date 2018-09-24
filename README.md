@@ -1,20 +1,20 @@
 # Mono API Server
-> https://monoapp.io
 
-## Installation
+[https://monoapp.io](https://monoapp.io)
 
-> Built with express, mongodb, and mongoose. Requires Node 8+_
+## Building & Installing
 
-- Clone repository
-- Install dependencies (`yarn`)
-- Run MongoDB (`mongod` or `brew services start mongo`)
-- Run the application (`yarn start`)
+> Built with Express, MongoDB, and Mongoose. Requires Node 8+
+
+- To install all application dependencies run `yarn` (or `npm install`)
+- To run MongoDB run `mongod` (or `brew services start mongo`)
+- To run the server run `yarn start` (or `npm run start`)
 
 ## Documentation
 
 This API uses stateless JWT authentication. Once a user logs in, the successful response will contain the `token` in the body. That token will expire in 24 hours. Every request will generate a new token that will last 24 hours from the time of the request, so make sure to replace the token in local storage after every request. To logout, simply remove the token from local storage.
 
-Attach that token to any requests that require authentication by setting it as the value for the `x-access-token` header field.
+Attach that token to any requests that require authentication by setting it as the value for the `x-mono-token` header field.
 
 ### Models
 
@@ -44,17 +44,17 @@ Registration route. Returns the new user.
 
 ##### Sample Body
 
-```
+```json
 {
-  name: "Andre Neves",
-  email: "andre@neves.com",
-  password: "asdfasdf"
+  "name": "Andre Neves",
+  "email": "andre@neves.com",
+  "password": "asdfasdf"
 }
 ```
 
 ##### Successful Response
 
-```
+```json
 {
   "message": "Successfully created user",
   "data": {
@@ -74,16 +74,16 @@ Re-authentication route. Returns the logged in user.
 
 ##### Sample Body
 
-```
+```json
 {
-  email: "andre@neves.com",
-  password: "asdfasdf"
+  "email": "andre@neves.com",
+  "password": "asdfasdf"
 }
 ```
 
 ##### Successful Response
 
-```
+```json
 {
   "message": "Successfully logged in user",
   "data": {
@@ -103,7 +103,7 @@ Return logged in user identified in token.
 
 ##### Successful Response
 
-```
+```json
 {
   "message": "Successfully retrieved logged in user",
   "data": {
@@ -119,7 +119,7 @@ Return logged in user identified in token.
 
 ##### Error Response
 
-```
+```json
 {
   "message": "Invalid email/password",
   "error": "Invalid email/password"
@@ -130,7 +130,7 @@ Return logged in user identified in token.
 
 ##### Authentication Errors
 
-```
+```json
 {
   "message": "Failed to authenticate token",
   "error": {
@@ -140,7 +140,7 @@ Return logged in user identified in token.
 }
 ```
 
-```
+```json
 {
   "message": "No token provided",
   "error": "No token provided"
@@ -149,13 +149,13 @@ Return logged in user identified in token.
 
 ##### Validation Errors
 
-```
+```json
 {
   "message": "Error creating user",
   "error": {
     "code": 11000,
     "index": 0,
-    "errmsg": "E11000 duplicate key error collection: admin.users index: email_1 dup key: { : \"jake3@bighuman.com\" }",
+    "errmsg": "E11000 duplicate key error collection: admin.users index: email_1 dup key: { : \"andre@neves.com\" }",
     "op": {
       "_id": "5ad79709f8caa627a4a0e1ca",
       "name": "Andre",
